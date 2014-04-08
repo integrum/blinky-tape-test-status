@@ -25,6 +25,8 @@ Blinky Tape sketch for high-performance TDD/BDD notifications
     s : Solid
     t : Test Pattern
     x : Rainbow Pattern
+    c : Cop Lights
+    i : One-shot progress bar
     0 - 9 : Brightness (0-100%)
 
 
@@ -41,4 +43,4 @@ In order to run tests, you'll need cppunit. On Debian based systems:
 ### Build, Test and Upload
 
     make all
-    
+
