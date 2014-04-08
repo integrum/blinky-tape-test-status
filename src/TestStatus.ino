@@ -13,6 +13,8 @@ struct CRGB leds[LED_COUNT];
 int mPulseInterval;
 char mColor;
 int mBrightness;
+int mCommandStartTime;
+char mLastColor;
 
 void setup()
 {
@@ -49,7 +51,55 @@ void color() {
     case 'x':
       rainbow();
       return;
+    case 'c':
+      cop();
+      return;
+    case 'i':
+      indefinite_progress();
+      return;
   }
+}
+
+void cop() {
+  int now = millis() / 100;
+  int phase = now % 5;
+
+  switch(phase) {
+    case 0:
+    case 1:
+      set_rgb(254, 0, 0);
+      return;
+    case 2:
+    case 3:
+      set_rgb(0, 0, 254);
+      return;
+    case 4:
+      set_rgb(254, 254, 254);
+      return;
+  }
+}
+
+void indefinite_progress() {
+  int time_elapsed = millis() - mCommandStartTime;
+
+  if(time_elapsed > 5000) {
+    return set_color(mLastColor);
+  }
+
+  int leds_to_show = time_elapsed / (5000 / LED_COUNT);
+
+  for (uint8_t i = 0; i < LED_COUNT; i++) {
+    if(i <= leds_to_show) {
+      leds[i].r = 254;
+      leds[i].g = 0;
+      leds[i].b = 254;
+    } else {
+      leds[i].r = 0;
+      leds[i].g = 0;
+      leds[i].b = 0;
+    }
+  }
+  LEDS.show();
 }
 
 bool is_color(char character) {
@@ -99,6 +149,10 @@ void set_color(char character) {
     case 'w':
     case 't':
     case 'x':
+    case 'c':
+    case 'i':
+      mCommandStartTime = millis();
+      mLastColor = mColor;
       mColor = character;
       return;
     }

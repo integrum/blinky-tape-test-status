@@ -16,7 +16,6 @@ class CharQueueTest : public CPPUNIT_NS::TestFixture {
   CPPUNIT_TEST( test_size_with_two_items );
   CPPUNIT_TEST( test_size_after_a_push_and_a_pop );
   CPPUNIT_TEST( test_size_after_two_pushes_and_a_pop );
-  CPPUNIT_TEST( test_size_after_a_pop );
   CPPUNIT_TEST( test_tripple_pop_after_double_push );
   CPPUNIT_TEST( test_clear_with_nothing );
   CPPUNIT_TEST( test_clear_after_two_pushes );
