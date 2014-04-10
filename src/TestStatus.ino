@@ -57,7 +57,52 @@ void color() {
     case 'i':
       indefinite_progress();
       return;
+    case 'd':
+      deploy();
+      return;
   }
+}
+
+void draw_rocket(int start){
+
+  int fire_start   = start;
+  int fire_stop    = start + 3;
+  int rocket_start = fire_stop;
+  int rocket_stop  = fire_stop + 4;
+
+  if (rocket_stop >= LED_COUNT)
+  {
+    return set_color(mLastColor);
+  }
+
+  for (int i = fire_start; i < fire_stop; ++i)
+  {
+    set_led_rgb(i, 254, random(254), 0);
+  }
+
+  for (int i = rocket_start; i < rocket_stop; ++i)
+  {
+    set_led_rgb(i, 0, 0, 255);
+  }
+
+  for (int i = rocket_stop; i < LED_COUNT; ++i)
+  {
+    set_led_rgb(i, 0,0,0);
+  }
+
+  for (int i = 0; i < fire_start; ++i)
+  {
+    set_led_rgb(i, 0,0,0);
+  }
+}
+
+void deploy(){
+
+  for (int i = 0; i < LED_COUNT; ++i)
+  {
+    draw_rocket(i);
+  }
+
 }
 
 void cop() {
@@ -151,6 +196,7 @@ void set_color(char character) {
     case 'x':
     case 'c':
     case 'i':
+    case 'd':
       mCommandStartTime = millis();
       mLastColor = mColor;
       mColor = character;
@@ -176,6 +222,11 @@ void set_rgb(int r, int g, int b) {
   for (uint8_t i = 0; i < LED_COUNT; i++) {
     leds[i] = CRGB(r,g,b);
   }
+  LEDS.show();
+}
+
+void set_led_rgb(int index, int r, int g, int b) {
+  leds[index] = CRGB(r,g,b);
   LEDS.show();
 }
 
