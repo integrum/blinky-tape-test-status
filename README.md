@@ -26,6 +26,7 @@ Blinky Tape sketch for high-performance TDD/BDD notifications
     t : Test Pattern
     x : Rainbow Pattern
     c : Cop Lights
+    d : Deploy Pattern (Rocket to the moon!)
     i : One-shot progress bar
     0 - 9 : Brightness (0-100%)
 
