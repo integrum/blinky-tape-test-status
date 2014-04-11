@@ -98,6 +98,11 @@ void draw_rocket(int start){
 
 void deploy(){
 
+  for (int i = 0; i < 20; ++i)
+  {
+    draw_rocket(0);
+  }
+
   for (int i = 0; i < LED_COUNT; ++i)
   {
     draw_rocket(i);
