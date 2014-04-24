@@ -45,6 +45,9 @@ void color() {
     case 'w':
       set_rgb(254, 254, 254);
       return;
+    case 'o':
+      set_rgb(255, 75, 0);
+      return;
     case 't':
       test_sequence();
       return;
@@ -153,7 +156,7 @@ void indefinite_progress() {
 }
 
 bool is_color(char character) {
-  return (character == 'r' || character == 'g' || character == 'b' || character == 'y' || character == 'w');
+  return (character == 'r' || character == 'g' || character == 'b' || character == 'y' || character == 'w' || character == 'o');
 }
 
 void pulse() {
@@ -197,6 +200,7 @@ void set_color(char character) {
     case 'b':
     case 'y':
     case 'w':
+    case 'o':
     case 't':
     case 'x':
     case 'c':
